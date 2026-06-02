@@ -220,16 +220,6 @@ La capacidad de cómputo y almacenamiento se distribuye en dos armarios físicos
 
 
 
-
-
-
-
-
-
-
-
-
-
   1. **Infraestructura IT (Equipamiento activo de los racks)**
 La arquitectura de red interna del CPD se ha diseñado bajo un criterio estricto de **Alta Disponibilidad (HA)** y eliminación de puntos únicos de fallo (SPOF). Cada uno de los dos armarios instalados cuenta con una réplica exacta de la electrónica y la potencia de cálculo para asegurar la tolerancia a fallos del sistema.
 
@@ -289,6 +279,12 @@ Como se especifica en el diseño lógico de la infraestructura, la presencia de 
 * **Evitación de Bucles de Capa 2 (STP):** La interconexión física redundante entre los switches activa de forma automática el protocolo **Spanning Tree Protocol (STP)**. Este protocolo mantiene uno de los enlaces en estado de reserva (*blocking*), listo para activarse en milisegundos si el conmutador principal sufre una avería, evitando tormentas de broadcast que tumbarían la LAN plana (10.10.10.0/24).
 * **Mitigación de Cuellos de Botella (Router):** Al concentrar la redundancia y el tráfico de conmutación local directamente en la electrónica de los switches del Rack 2, se evita la saturación por sobreprocesamiento en el Router perimetral. De este modo, el Router se dedica exclusivamente a sus funciones críticas: el filtrado de paquetes (*Firewall/ACL*) y la traducción de direcciones (*NAT*).
 * **Simplicidad de Direccionamiento:** Mantener un único enrutador en la cabecera del Rack 1 evita la complejidad de gestionar dos pasarelas residiendo en redes lógicas separadas, simplificando la sincronización de servicios y la coherencia de la tabla de rutas.
+    1. ** Sistema de Alimentación Ininterrumpida (SAI) **
+Para mitigar cortes de suministro eléctrico en la infraestructura local, se ha integrado un SAI de tecnología On-Line (Doble Conversión). Este sistema proporciona un tiempo de transferencia de 0 ms, garantizando una alimentación limpia de ruidos eléctricos directamente desde las baterías de forma permanente.
+
+1. **Carga Crítica:** Dimensionado para soportar 1500W de electrónica perimetral local.
+1. **Autonomía:** Dispone de 30 minutos de respaldo a media carga.
+1. **Automatización:** Incorpora conectividad mediante tarjeta SNMP para lanzar un script de apagado ordenado (*graceful shutdown*) en caso de que el corte de energía supere los 15 de minutos.
 
 
   1. **Seguridad física y lógica**
@@ -937,4 +933,96 @@ El sistema lee correctamente el nombre de 'Alex Jitsi' desde la base de datos a 
 ![Imagen Extraída 113](images/image_113.png)
 
 
+
+playbooks utilitzats en aquest projecte
+
+![Imagen Extraída 114](images/image_114.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Playbooks del servidor multimedia:
+
+![Imagen Extraída 115](images/image_115.png)
+
+![Imagen Extraída 116](images/image_116.png)
+
+
+
+![Imagen Extraída 117](images/image_117.png)
+
+![Imagen Extraída 118](images/image_118.png)
+
+![Imagen Extraída 119](images/image_119.png)
+
+
+
+Playbooks servidor ldap
+
+
+
+![Imagen Extraída 120](images/image_120.png)
+
+![Imagen Extraída 121](images/image_121.png)
+
+![Imagen Extraída 122](images/image_122.png)
+
+
+
+
+
+Playbooks y otros archivos utilizados para el servidor de base de datos:
+
+![Imagen Extraída 123](images/image_123.png)
+
+![Imagen Extraída 124](images/image_124.png)
+
+
+
+![Imagen Extraída 125](images/image_125.png)
+
+![Imagen Extraída 126](images/image_126.png)
+
+![Imagen Extraída 127](images/image_127.png)
+
+![Imagen Extraída 128](images/image_128.png)
+
+![Imagen Extraída 129](images/image_129.png)
+
+![Imagen Extraída 130](images/image_130.png)
+
+![Imagen Extraída 131](images/image_131.png)
+
+![Imagen Extraída 132](images/image_132.png)
+
+![Imagen Extraída 133](images/image_133.png)
+
+![Imagen Extraída 134](images/image_134.png)
+
+![Imagen Extraída 135](images/image_135.png)
+
+![Imagen Extraída 136](images/image_136.png)
+
+![Imagen Extraída 137](images/image_137.png)
+
+![Imagen Extraída 138](images/image_138.png)
+
+![Imagen Extraída 139](images/image_139.png)
 
